@@ -41,9 +41,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
         glview = GLViewImpl::createWithRect("zengyfGame", Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
+
 #else
         glview = GLViewImpl::create("zengyfGame");
 #endif
+		//director->getOpenGLView()->setFrameSize(640, 960);
+		glview->setFrameSize(640, 960);
         director->setOpenGLView(glview);
     }
 
