@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+//#include "HelloWorldScene.h"
+#include "MainInterface.h"
 
 USING_NS_CC;
 
@@ -46,7 +47,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         glview = GLViewImpl::create("zengyfGame");
 #endif
 		//director->getOpenGLView()->setFrameSize(640, 960);
-		glview->setFrameSize(640, 960);
+		glview->setFrameSize(960, 640);
         director->setOpenGLView(glview);
     }
 
@@ -78,7 +79,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    auto scene = MainInterface::createScene();
 
     // run
     director->runWithScene(scene);
