@@ -3,6 +3,10 @@
 #define __MAININTERFACE_SCENE_H__
 
 #include "cocos2d.h"
+#include "ui\UIButton.h"
+
+using namespace cocos2d;
+using namespace ui;
 
 class MainInterface : public cocos2d::Layer
 {
@@ -12,6 +16,8 @@ public:
 	virtual bool init();
 
 	CREATE_FUNC(MainInterface);
+
+	void OnClick(Ref* pender,TouchEventType type);
 };
 
 #endif // __MAININTERFACE_SCENE_H__

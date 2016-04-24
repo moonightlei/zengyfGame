@@ -1,4 +1,6 @@
 #include "MainInterface.h"
+#include "TestPop.h"
+
 
 USING_NS_CC;
 
@@ -21,14 +23,28 @@ bool MainInterface::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-
+	//±³¾°Í¼Æ¬
 	auto spriteBackgound = Sprite::create("res/MainInterface.png");
-	spriteBackgound->setAnchorPoint(Vec2(0.5,0.5));
-	//log("%f,%f", visibleSize.width, visibleSize.height);
-	//log("%f,%f", spriteBackgound->getContentSize().width,spriteBackgound->getContentSize().height);
+	//spriteBackgound->setAnchorPoint(Vec2(0.5,0.5));
 	spriteBackgound->setPosition(visibleSize/2.0);
-	//log("%f,%f", spriteBackgound->getPosition().x, spriteBackgound->getPosition().y);
 	this->addChild(spriteBackgound);
 
+	//°´Å¥
+	auto button = Button::create("CloseNormal.png");
+	button->setPosition(origin + Vec2(visibleSize) - Vec2(button->getContentSize() / 2.0));
+	button->addTouchEventListener(this,toucheventselector(MainInterface::OnClick));
+	this->addChild(button);
+
+
 	return true;
+}
+
+
+void MainInterface::OnClick(Ref* pender, TouchEventType type)
+{
+	if (type == TouchEventType::TOUCH_EVENT_ENDED)
+	{
+		auto popdailog = TestPop::createDailog();
+		this->addChild(popdailog);
+	}
 }
