@@ -71,7 +71,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Classes;$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -146,6 +146,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\json\json_reader.cpp" />
+    <ClCompile Include="..\Classes\json\json_value.cpp" />
+    <ClCompile Include="..\Classes\json\json_writer.cpp" />
     <ClCompile Include="..\Classes\MainInterface.cpp" />
     <ClCompile Include="..\Classes\PopDailog.cpp" />
     <ClCompile Include="..\Classes\TestPop.cpp" />
@@ -154,6 +157,18 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\json\allocator.h" />
+    <ClInclude Include="..\Classes\json\assertions.h" />
+    <ClInclude Include="..\Classes\json\autolink.h" />
+    <ClInclude Include="..\Classes\json\config.h" />
+    <ClInclude Include="..\Classes\json\features.h" />
+    <ClInclude Include="..\Classes\json\forwards.h" />
+    <ClInclude Include="..\Classes\json\json.h" />
+    <ClInclude Include="..\Classes\json\json_tool.h" />
+    <ClInclude Include="..\Classes\json\reader.h" />
+    <ClInclude Include="..\Classes\json\value.h" />
+    <ClInclude Include="..\Classes\json\version.h" />
+    <ClInclude Include="..\Classes\json\writer.h" />
     <ClInclude Include="..\Classes\MainInterface.h" />
     <ClInclude Include="..\Classes\PopDailog.h" />
     <ClInclude Include="..\Classes\TestPop.h" />
@@ -173,6 +188,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Classes\json\json_valueiterator.inl" />
+    <None Include="..\Classes\json\sconscript" />
+    <None Include="..\Classes\json\version.h.in" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

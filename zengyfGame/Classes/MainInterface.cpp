@@ -35,6 +35,10 @@ bool MainInterface::init()
 	button->addTouchEventListener(this,toucheventselector(MainInterface::OnClick));
 	this->addChild(button);
 
+	//¼ÓÔØjsonÎÄ¼ş
+
+	
+
 
 	return true;
 }

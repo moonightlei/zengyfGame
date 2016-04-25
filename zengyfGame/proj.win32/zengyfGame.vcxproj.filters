@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\json">
+      <UniqueIdentifier>{77570b77-c3b2-4372-85ec-c010053fafca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,6 +32,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TestPop.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\json\json_reader.cpp">
+      <Filter>src\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\json\json_value.cpp">
+      <Filter>src\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\json\json_writer.cpp">
+      <Filter>src\json</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,10 +62,57 @@
     <ClInclude Include="..\Classes\TestPop.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\json\allocator.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\assertions.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\autolink.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\config.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\features.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\forwards.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\json.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\json_tool.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\reader.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\value.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\version.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json\writer.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Classes\json\json_valueiterator.inl">
+      <Filter>src\json</Filter>
+    </None>
+    <None Include="..\Classes\json\sconscript">
+      <Filter>src\json</Filter>
+    </None>
+    <None Include="..\Classes\json\version.h.in">
+      <Filter>src\json</Filter>
+    </None>
   </ItemGroup>
 </Project>
