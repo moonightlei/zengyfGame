@@ -42,6 +42,9 @@
     <ClCompile Include="..\Classes\json\json_writer.cpp">
       <Filter>src\json</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameInterface.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\json\writer.h">
       <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameInterface.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

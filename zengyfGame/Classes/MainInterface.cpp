@@ -1,5 +1,7 @@
 #include "MainInterface.h"
 #include "TestPop.h"
+#include "json\json.h"
+#include "GameInterface.h"
 
 
 USING_NS_CC;
@@ -36,6 +38,7 @@ bool MainInterface::init()
 	this->addChild(button);
 
 	//¼ÓÔØjsonÎÄ¼þ
+	readArrayJson();
 
 	
 
@@ -48,7 +51,24 @@ void MainInterface::OnClick(Ref* pender, TouchEventType type)
 {
 	if (type == TouchEventType::TOUCH_EVENT_ENDED)
 	{
-		auto popdailog = TestPop::createDailog();
-		this->addChild(popdailog);
+		//auto popdailog = TestPop::createDailog();
+		//this->addChild(popdailog);
+		Director::getInstance()->replaceScene(GameInterface::createScene());
+	}
+}
+
+void MainInterface::readArrayJson()
+{
+	Json::Reader reader;
+	Json::Value root;
+
+	std::string data = FileUtils::getInstance()->getStringFromFile("json/data.json");
+	if (reader.parse(data,root,false) == true) {
+		log("reader.parse");
+		int iNum = root.size();
+		for (int i = 0; i < iNum;++i) {
+			log("%d", root[i]["id"].asInt());
+			log("%s", root[i]["dailog"].asCString());
+		}
 	}
 }

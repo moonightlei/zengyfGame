@@ -18,6 +18,7 @@ public:
 	CREATE_FUNC(MainInterface);
 
 	void OnClick(Ref* pender,TouchEventType type);
+	void readArrayJson();
 };
 
 #endif // __MAININTERFACE_SCENE_H__
