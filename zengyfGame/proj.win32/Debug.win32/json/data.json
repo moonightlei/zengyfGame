@@ -1,4 +1,5 @@
 [
-	{	"id":1,	"dailog":"袁成鹏"},
-	{	"id":2,	"dailog":"曾艳芬"}
+	{	"png":"res/background/BG001.png"},
+	{	"png":"res/background/BG002.png"},
+	{ "png":"res/background/BG003.png"}
 ]

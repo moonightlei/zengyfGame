@@ -24,24 +24,38 @@ bool MainInterface::init()
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	Size winSize = Director::getInstance()->getWinSize();
+	
+
+	log("visbleSize:%f,%f",visibleSize.width,visibleSize.height);
+	log("origin:%f,%f",origin.x,origin.y);
+	log("winSize:%f,%f",winSize.width,winSize.height);
+
 
 	//背景图片
 	auto spriteBackgound = Sprite::create("res/MainInterface.png");
 	//spriteBackgound->setAnchorPoint(Vec2(0.5,0.5));
-	spriteBackgound->setPosition(visibleSize/2.0);
+	spriteBackgound->setPosition(Vec2(origin) + Vec2(visibleSize/2.0));
+
+	spriteBackgound->setScaleX(visibleSize.width / spriteBackgound->getContentSize().width);
+	spriteBackgound->setScaleY(visibleSize.height / spriteBackgound->getContentSize().height);
+
 	this->addChild(spriteBackgound);
 
 	//按钮
-	auto button = Button::create("CloseNormal.png");
+	/*auto button = Button::create("CloseNormal.png");
 	button->setPosition(origin + Vec2(visibleSize) - Vec2(button->getContentSize() / 2.0));
 	button->addTouchEventListener(this,toucheventselector(MainInterface::OnClick));
-	this->addChild(button);
+	this->addChild(button);*/
+
+	//进入关卡按钮
+	auto startButton = Button::create("res/startgame.png");
+	startButton->setPosition(origin + Vec2(visibleSize / 2.0));
+	startButton->addTouchEventListener(this, toucheventselector(MainInterface::OnClick));
+	this->addChild(startButton);
 
 	//加载json文件
-	readArrayJson();
-
-	
-
+	//readArrayJson();
 
 	return true;
 }
