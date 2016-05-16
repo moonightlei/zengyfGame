@@ -4,7 +4,9 @@
 
 #include "cocos2d.h"
 #include "ui\UIButton.h"
+#include "json\json.h"
 #include<vector>
+
 
 using namespace cocos2d;
 using namespace ui;
@@ -32,6 +34,9 @@ private:
 	void __doCommand();
 	std::vector<CommandItem>::iterator __iter;
 	Sprite *__backgroundSprite;
+	Label *__dailogLabel;
+	Json::Value __root;
+	int __iCommandItem;
 };
 
 #endif // __GAMEINTERFACE_SCENE_H__

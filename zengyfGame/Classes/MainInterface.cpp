@@ -2,6 +2,7 @@
 #include "TestPop.h"
 #include "json\json.h"
 #include "GameInterface.h"
+#include"CsvUtil.h"
 
 
 USING_NS_CC;
@@ -57,6 +58,32 @@ bool MainInterface::init()
 	//加载json文件
 	//readArrayJson();
 
+
+	//test代码
+	//const char *sPath = "json/test.csv";
+	//CsvUtil::getInstance()->loadFile(sPath);
+	//auto size = CsvUtil::getInstance()->getFileRowColNum(sPath);
+
+	//for (int i = 2; i < size.width; ++i){
+	//	//log("id = %d", CsvUtil::getInstance()->getValue(i, 0, sPath).asInt());
+	//	//log("name = %s", CsvUtil::getInstance()->getValue(i, 1, sPath).asString().c_str());
+	//	//log("level = %d", CsvUtil::getInstance()->getValue(i, 2, sPath).asInt());
+
+	//	auto label = Label::createWithTTF(CsvUtil::getInstance()->getValue(i, 1, sPath).asString(), "Arial", 24);
+	//	label->setPosition(Vec2(i*50, 200));
+	//	this->addChild(label, 1);
+	//}
+	
+	auto strings = CCDictionary::createWithContentsOfFile("json/dailog.xml");
+	auto daiog = static_cast<String*>(strings->objectForKey("1"));
+
+	log("%s", daiog);
+	auto label = Label::createWithTTF(daiog->_string,"fonts/msyh.ttf",24);
+	label->setPosition(Vec2(200,100));
+	this->addChild(label, 1);
+
+
+
 	return true;
 }
 
@@ -76,13 +103,14 @@ void MainInterface::readArrayJson()
 	Json::Reader reader;
 	Json::Value root;
 
-	std::string data = FileUtils::getInstance()->getStringFromFile("json/data.json");
+	std::string data = FileUtils::getInstance()->getStringFromFile("json/dailog.json");
+	log("readArrayJson");
 	if (reader.parse(data,root,false) == true) {
 		log("reader.parse");
-		int iNum = root.size();
-		for (int i = 0; i < iNum;++i) {
-			log("%d", root[i]["id"].asInt());
-			log("%s", root[i]["dailog"].asCString());
-		}
+		log("key:袁成鹏%s",root[0]["dailog"].asString().c_str());
+
+		auto label = Label::createWithTTF("test","fonts/msyh.ttf",24);
+		label->setPosition(Vec2(300,200));
+		this->addChild(label, 1);
 	}
 }

@@ -1,5 +1,5 @@
 #include "GameInterface.h"
-#include "json\json.h"
+
 
 USING_NS_CC;
 
@@ -30,18 +30,19 @@ bool GameInterface::init()
 	//初始化对话框
 	auto dailogSprite = Sprite::create("res/dailog.png");
 	dailogSprite->setPosition(Vec2(origin) + Vec2(visibleSize.width / 2.0,0)
-		+ Vec2(0,dailogSprite->getContentSize().height/2.0)
+		+ Vec2(0,dailogSprite->getContentSize().height/2.0*0.7)
 		);
 	dailogSprite->setScaleX(visibleSize.width / dailogSprite->getContentSize().width);
+	dailogSprite->setScaleY(0.7);
 	this->addChild(dailogSprite);
 
 
 	//对话框文字
 	Size dailogSize(dailogSprite->getContentSize().width * dailogSprite->getScaleX(),
 		dailogSprite->getContentSize().height * dailogSprite->getScaleY());
-	auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 20,Size(420,140));
-	label->setPosition(dailogSprite->getPosition());
-	this->addChild(label, 1);
+	__dailogLabel = Label::createWithTTF("Hello World", "fonts/msyh.ttf", 18,Size(420,110));
+	__dailogLabel->setPosition(dailogSprite->getPosition());
+	this->addChild(__dailogLabel, 1);
 
 	//确定按钮
 	auto nextButton = Button::create("res/enter.png");
@@ -56,8 +57,8 @@ bool GameInterface::init()
 	readJsonData();
 
 	//指令设置
-	__iter = __command.begin();
-
+	//__iter = __command.begin();
+	__iCommandItem = 0;
 	//运行命令
 	__doCommand();
 
@@ -69,9 +70,9 @@ void GameInterface::readJsonData()
 //读取Json文件中的数据
 {
 	Json::Reader reader;
-	Json::Value root;
+	//Json::Value root;
 
-	std::string data = FileUtils::getInstance()->getStringFromFile("json/data.json");
+	/*std::string data = FileUtils::getInstance()->getStringFromFile("json/data.json");
 	if (reader.parse(data, root, false) == true) {
 		log("reader.parse");
 		int iNum = root.size();
@@ -80,7 +81,12 @@ void GameInterface::readJsonData()
 			commanditem.strBackGround_pngName = root[i]["png"].asString();
 			__command.push_back(commanditem);
 		}
-	}	
+	}*/	
+	std::string data = FileUtils::getInstance()->getStringFromFile("json/dailog.json");
+	if (reader.parse(data, __root, false) == true) {
+		log("read success!!!");
+		log("Command Size:%d", __root.size());
+	}
 }
 
 void GameInterface::__doCommand()
@@ -88,20 +94,43 @@ void GameInterface::__doCommand()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	__backgroundSprite->setTexture(__iter->strBackGround_pngName);
-	__backgroundSprite->setScaleX(visibleSize.width / __backgroundSprite->getContentSize().width);
-	__backgroundSprite->setScaleY(visibleSize.height / __backgroundSprite->getContentSize().height);
+	
+	int size = __root[__iCommandItem]["data"].size();
+	Json::Value data = __root[__iCommandItem]["data"];
+	for (int i = 0; i < size; ++i) {
+		//log("%s", data[i]["command"].asCString());
+		if (data[i]["command"] == "updatedailog") {
+			//更新对话
+			auto strings = CCDictionary::createWithContentsOfFile("json/dailog.xml");
+			std::stringstream ss;
+			ss << data[i]["dailog"].asInt();
+			auto dailog = static_cast<String*>(strings->objectForKey(ss.str()));
+			__dailogLabel->setString(dailog->_string);
+		}
+		else if (data[i]["command"] == "updatebackground") {
+			//log("updatebackground");
+			__backgroundSprite->setTexture(data[i]["background"].asString());
+			__backgroundSprite->setScaleX(visibleSize.width / __backgroundSprite->getContentSize().width);
+			__backgroundSprite->setScaleY(visibleSize.height / __backgroundSprite->getContentSize().height);
+		}
+	}
+	
+	
+	
+	
+	
+	//log("dailog:%s", __root[__iCommandItem]["dailog"].asCString());
 
-
-
-	__iter++;
+	//__iter++;
+	__iCommandItem++;
 }
 
 void GameInterface::OnClick(Ref* pender, TouchEventType type)
 {
 	if (type == TouchEventType::TOUCH_EVENT_ENDED)
 	{
-		if (__iter != __command.end()) {
+		if (__iCommandItem != __root.size()){
+		//if (__iter != __command.end()) {
 			__doCommand();
 		}
 	}
