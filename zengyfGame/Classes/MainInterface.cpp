@@ -74,13 +74,13 @@ bool MainInterface::init()
 	//	this->addChild(label, 1);
 	//}
 	
-	auto strings = CCDictionary::createWithContentsOfFile("json/dailog.xml");
+	/*auto strings = CCDictionary::createWithContentsOfFile("json/dailog.xml");
 	auto daiog = static_cast<String*>(strings->objectForKey("1"));
 
 	log("%s", daiog);
 	auto label = Label::createWithTTF(daiog->_string,"fonts/msyh.ttf",24);
 	label->setPosition(Vec2(200,100));
-	this->addChild(label, 1);
+	this->addChild(label, 1);*/
 
 
 

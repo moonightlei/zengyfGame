@@ -37,6 +37,8 @@ private:
 	Label *__dailogLabel;
 	Json::Value __root;
 	int __iCommandItem;
+	Map<std::string, Sprite*> m_FigureSprite;//人物精灵
+	void __updateFigurePos(); //每次向FigureMap中插入精灵后，更新精灵的位置
 };
 
 #endif // __GAMEINTERFACE_SCENE_H__
